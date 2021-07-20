@@ -11,9 +11,25 @@ def aug_normalized_adjacency(adj):
    d_mat_inv_sqrt = sp.diags(d_inv_sqrt)
    return d_mat_inv_sqrt.dot(adj).dot(d_mat_inv_sqrt).tocoo()
 
+def normalized_adjacency(adj):
+   pass
+
+def random_walk_adjacency(adj):
+   pass
+
+def aug_random_walk_adjacency(adj):
+   pass
+
+def first_order_cheby_adjacency(adj):
+   pass
+
 def fetch_normalization(type):
    switcher = {
        'AugNormAdj': aug_normalized_adjacency,  # A' = (D + I)^-1/2 * ( A + I ) * (D + I)^-1/2
+       'AugRandAdj': aug_random_walk_adjacency, # A' = (D + I)^-1 * (A + I)
+       'NormAdj': normalized_adjacency,         # A' =  D^-1/2 * A * D^-1/2
+       'RandAdj': random_walk_adjacency,        # A' =  D^-1 * A
+       'ChebyAdj': first_order_cheby_adjacency  # A' = (I + D^-1/2 * A * D^-1/2)
    }
    func = switcher.get(type, lambda: "Invalid normalization technique.")
    return func
