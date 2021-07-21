@@ -45,9 +45,9 @@ def fetch_normalization(type):
    switcher = {                                 # It is not distinguished between "hat" and "not hat" in the comment formulars!!!
        'AugNormAdj': aug_normalized_adjacency,  # A' = (D + I)^-1/2 * ( A + I ) * (D + I)^-1/2
        'AugRandAdj': aug_random_walk_adjacency, # A' = (D + I)^-1 * (A + I)
-       'NormAdj': normalized_adjacency,         # A' =  D^-1/2 * A * D^-1/2
-       'RandAdj': random_walk_adjacency,        # A' =  D^-1 * A
-       'ChebyAdj': first_order_cheby_adjacency  # A' = (I + D^-1/2 * A * D^-1/2)
+       'AugRWalk': normalized_adjacency,         # A' =  D^-1/2 * A * D^-1/2
+       'RWalk': random_walk_adjacency,        # A' =  D^-1 * A
+       'FirstOrderGCN': first_order_cheby_adjacency  # A' = (I + D^-1/2 * A * D^-1/2)
    }
    func = switcher.get(type, lambda: "Invalid normalization technique.")
    return func
